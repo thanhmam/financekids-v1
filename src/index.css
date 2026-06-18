@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+:root {
+  /* Vibrant, kid-friendly color palette */
+  --color-primary: #FF6B6B; /* Soft Red/Pink */
+  --color-secondary: #4ECDC4; /* Teal */
+  --color-accent: #FFE66D; /* Yellow */
+  --color-success: #70D689; /* Green */
+  --color-background: #F7FFF7; /* Off-white / Mint tint */
+  --color-text-main: #2C3E50; /* Dark Blue/Gray */
+  --color-text-light: #7F8C8D;
+  
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+  
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+  --radius-full: 9999px;
+  
+  --transition-fast: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-bounce: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  /* subtle background pattern */
+  background-image: radial-gradient(var(--color-secondary) 1px, transparent 1px),
+  radial-gradient(var(--color-secondary) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  background-attachment: fixed;
+  opacity: 0.95;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--color-primary); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); }
+
+/* Glassmorphism Containers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 2rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  font-family: inherit;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-bounce);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+.btn-primary:hover { background-color: #ff5252; transform: translateY(-2px); box-shadow: 0 6px 0 rgba(255, 107, 107, 0.4); }
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: white;
+}
+.btn-secondary:hover { background-color: #3bbfb6; transform: translateY(-2px); box-shadow: 0 6px 0 rgba(78, 205, 196, 0.4); }
+
+.btn-accent {
+  background-color: var(--color-accent);
+  color: var(--color-text-main);
+}
+.btn-accent:hover { background-color: #ffd93b; transform: translateY(-2px); box-shadow: 0 6px 0 rgba(255, 230, 109, 0.4); }
+
+/* Cards (for quiz/lessons) */
+.game-card {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-bounce);
+  border: 3px solid transparent;
+  cursor: pointer;
+}
+
+.game-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-secondary);
+}
+
+/* Micro Animations */
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  80% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes coinFlip {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.animate-pop { animation: popIn 0.5s var(--transition-bounce) forwards; }
+.animate-slide { animation: slideUp 0.5s ease-out forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-coin { animation: coinFlip 1s ease-in-out; }
+
+/* Layout Utilities */
+.app-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.score-badge {
+  background: var(--color-accent);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.wallet-badge {
+  background: var(--color-success);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive constraints */
+@media (max-width: 480px) {
+  .app-container {
+    padding: 0.5rem;
+  }
+  .glass-panel {
+    padding: 1.5rem;
+  }
+}
