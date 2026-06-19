@@ -7,6 +7,7 @@ export default function ChallengeList() {
   const { answeredQuestions, answerChallengeQuestion, navigateTo } = useGame();
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [feedback, setFeedback] = useState(null); // { type: 'success' | 'error', message: '' }
+  const [nextTimer, setNextTimer] = useState(null);
 
   const totalQuestions = challengeQuestions.length;
   const completedCount = answeredQuestions.length;
@@ -14,9 +15,26 @@ export default function ChallengeList() {
   const isCourseCompleted = completedCount === totalQuestions;
 
   const handleOpenQuestion = (q) => {
-    // If already answered, we can just show it or do nothing
     if (answeredQuestions.includes(q.id)) return;
     setSelectedQuestion(q);
+    setFeedback(null);
+  };
+
+  const handleGoToNext = (currentId) => {
+    setFeedback(null);
+    const nextQIndex = challengeQuestions.findIndex(q => q.id === currentId) + 1;
+    if (nextQIndex < challengeQuestions.length) {
+      // Find the next unanswered question sequentially
+      let nextQ = challengeQuestions[nextQIndex];
+      setSelectedQuestion(nextQ);
+    } else {
+      setSelectedQuestion(null);
+    }
+  };
+
+  const handleCloseModal = () => {
+    if (nextTimer) clearTimeout(nextTimer);
+    setSelectedQuestion(null);
     setFeedback(null);
   };
 
@@ -29,11 +47,12 @@ export default function ChallengeList() {
         type: 'success',
         message: `Tuyệt vời! Con được nhận +10 Điểm và +${selectedQuestion.reward} Xu! 🎉`
       });
-      // Close modal after a delay
-      setTimeout(() => {
-        setSelectedQuestion(null);
-        setFeedback(null);
-      }, 2000);
+      
+      // Auto-advance after 3.5 seconds
+      const timer = setTimeout(() => {
+        handleGoToNext(selectedQuestion.id);
+      }, 3500);
+      setNextTimer(timer);
     } else {
       setFeedback({
         type: 'error',
@@ -205,7 +224,7 @@ export default function ChallengeList() {
             position: 'relative'
           }}>
             <button
-              onClick={() => setSelectedQuestion(null)}
+              onClick={handleCloseModal}
               style={{
                 position: 'absolute',
                 top: '1rem',
@@ -230,10 +249,11 @@ export default function ChallengeList() {
 
             {/* Question Illustration */}
             <div className="animate-float" style={{
-              fontSize: '5.5rem',
+              fontSize: '4.5rem',
               textAlign: 'center',
               marginBottom: '1rem',
-              lineHeight: '1'
+              lineHeight: '1',
+              letterSpacing: '5px'
             }}>
               {selectedQuestion.emoji || "❓"}
             </div>
@@ -255,7 +275,7 @@ export default function ChallengeList() {
                     borderColor: '#E0E0E0',
                     display: 'flex',
                     alignItems: 'center',
-                    padding: '1rem 1.2rem'
+                    padding: '1.1rem 1.2rem'
                   }}
                   onClick={() => handleAnswerClick(opt)}
                   disabled={feedback && feedback.type === 'success'}
@@ -300,7 +320,7 @@ export default function ChallengeList() {
                 animation: 'popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
               }}>
                 <div style={{
-                  fontSize: '6rem',
+                  fontSize: '5rem',
                   marginBottom: '1rem',
                   display: 'flex',
                   gap: '0.8rem',
@@ -308,10 +328,26 @@ export default function ChallengeList() {
                 }} className="animate-float">
                   🎉 ⭐ 🪙 🎈
                 </div>
-                <h1 style={{ color: 'var(--color-success)', fontSize: '2.5rem', marginBottom: '0.5rem' }}>ĐÚNG RỒI!</h1>
-                <p style={{ fontSize: '1.2rem', fontWeight: '900', color: 'var(--color-text-main)' }}>
+                <h1 style={{ color: 'var(--color-success)', fontSize: '2.2rem', marginBottom: '0.5rem' }}>ĐÚNG RỒI!</h1>
+                <p style={{ fontSize: '1.1rem', fontWeight: '900', color: 'var(--color-text-main)', marginBottom: '2rem' }}>
                   {feedback.message}
                 </p>
+                <div style={{ display: 'flex', gap: '0.8rem', width: '100%', justifyContent: 'center' }}>
+                  <button 
+                    className="btn btn-secondary" 
+                    style={{ padding: '0.6rem 1.2rem', fontSize: '0.95rem' }} 
+                    onClick={handleCloseModal}
+                  >
+                    Dừng & Về Menu
+                  </button>
+                  <button 
+                    className="btn btn-primary" 
+                    style={{ padding: '0.6rem 1.2rem', fontSize: '0.95rem' }} 
+                    onClick={() => handleGoToNext(selectedQuestion.id)}
+                  >
+                    Câu tiếp theo
+                  </button>
+                </div>
               </div>
             )}
 
