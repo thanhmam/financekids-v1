@@ -228,6 +228,16 @@ export default function ChallengeList() {
               </div>
             </div>
 
+            {/* Question Illustration */}
+            <div className="animate-float" style={{
+              fontSize: '5.5rem',
+              textAlign: 'center',
+              marginBottom: '1rem',
+              lineHeight: '1'
+            }}>
+              {selectedQuestion.emoji || "❓"}
+            </div>
+
             <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '1.4rem', color: 'var(--color-text-main)' }}>
               {selectedQuestion.question}
             </h2>
@@ -242,24 +252,77 @@ export default function ChallengeList() {
                     fontSize: '1.1rem',
                     fontWeight: 'bold',
                     textAlign: 'left',
-                    borderColor: '#E0E0E0'
+                    borderColor: '#E0E0E0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: '1rem 1.2rem'
                   }}
                   onClick={() => handleAnswerClick(opt)}
                   disabled={feedback && feedback.type === 'success'}
                 >
-                  {opt.text}
+                  <span style={{
+                    background: 'var(--color-secondary)',
+                    color: 'white',
+                    borderRadius: '50%',
+                    width: '32px',
+                    height: '32px',
+                    minWidth: '32px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginRight: '1rem',
+                    fontSize: '1.1rem',
+                    fontWeight: '900',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                  }}>{i + 1}</span>
+                  <span style={{ flex: 1 }}>{opt.text}</span>
                 </button>
               ))}
             </div>
 
-            {feedback && (
+            {/* Celebratory Animation Overlay */}
+            {feedback && feedback.type === 'success' && (
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                zIndex: 10,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'rgba(255, 255, 255, 0.96)',
+                borderRadius: 'var(--radius-lg)',
+                padding: '2rem',
+                textAlign: 'center',
+                animation: 'popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+              }}>
+                <div style={{
+                  fontSize: '6rem',
+                  marginBottom: '1rem',
+                  display: 'flex',
+                  gap: '0.8rem',
+                  justifyContent: 'center'
+                }} className="animate-float">
+                  🎉 ⭐ 🪙 🎈
+                </div>
+                <h1 style={{ color: 'var(--color-success)', fontSize: '2.5rem', marginBottom: '0.5rem' }}>ĐÚNG RỒI!</h1>
+                <p style={{ fontSize: '1.2rem', fontWeight: '900', color: 'var(--color-text-main)' }}>
+                  {feedback.message}
+                </p>
+              </div>
+            )}
+
+            {feedback && feedback.type === 'error' && (
               <div className="animate-pop" style={{
                 marginTop: '1.5rem',
                 padding: '1rem',
                 borderRadius: 'var(--radius-sm)',
-                border: `2px solid ${feedback.type === 'success' ? 'var(--color-success)' : 'var(--color-primary)'}`,
-                backgroundColor: feedback.type === 'success' ? '#EEFAF1' : '#FFECEC',
-                color: feedback.type === 'success' ? '#1E7E34' : 'var(--color-primary)',
+                border: '2px solid var(--color-primary)',
+                backgroundColor: '#FFECEC',
+                color: 'var(--color-primary)',
                 fontWeight: '800',
                 textAlign: 'center'
               }}>
