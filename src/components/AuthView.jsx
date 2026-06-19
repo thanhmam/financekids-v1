@@ -49,64 +49,82 @@ export default function AuthView() {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      minHeight: '80vh',
+      minHeight: '85vh',
       padding: '1rem'
     }}>
       <div className="glass-panel animate-pop" style={{
         width: '100%',
-        maxWidth: '450px',
+        maxWidth: '440px',
         padding: '2.5rem 2rem',
-        border: '3px solid rgba(255, 255, 255, 0.9)',
-        boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+        border: '1px solid rgba(14, 30, 56, 0.08)',
+        boxShadow: 'var(--shadow-card)',
+        borderRadius: 'var(--radius-lg)',
+        backgroundColor: '#FFFFFF'
       }}>
-        {/* Kid Logo */}
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        {/* Fox Mascot Illustration */}
+        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
           <div className="animate-float" style={{
-            fontSize: '4.5rem',
-            marginBottom: '0.5rem',
-            display: 'inline-block'
+            width: '140px',
+            height: '140px',
+            margin: '0 auto 1rem',
+            borderRadius: '50%',
+            overflow: 'hidden',
+            backgroundColor: '#FFF7ED',
+            border: '4px solid #FFF',
+            boxShadow: 'var(--shadow-soft)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
           }}>
-            🦁
+            <img 
+              src="/mascot.png" 
+              alt="Cáo Cam Mascot" 
+              style={{
+                width: '110%',
+                height: '110%',
+                objectFit: 'cover',
+                marginTop: '5%'
+              }}
+            />
           </div>
           <h1 style={{ 
-            fontSize: '2.2rem', 
-            color: 'var(--color-primary)', 
-            marginBottom: '0.5rem',
-            textTransform: 'uppercase',
-            letterSpacing: '1px'
+            fontSize: '2.1rem', 
+            color: 'var(--color-secondary)', 
+            marginBottom: '0.3rem',
+            fontWeight: '900'
           }}>
             FinanceKids
           </h1>
-          <p style={{ color: 'var(--color-text-light)', fontWeight: '700' }}>
+          <p style={{ color: 'var(--color-text-light)', fontWeight: '700', fontSize: '0.95rem' }}>
             {isSignUp ? 'Đăng ký tài khoản hiệp sĩ tài chính mới' : 'Đăng nhập vào hành trình học tập'}
           </p>
         </div>
 
         {error && (
           <div className="animate-pop" style={{
-            backgroundColor: '#FFECEC',
-            border: '2px solid var(--color-primary)',
-            color: 'var(--color-primary)',
+            backgroundColor: '#FFF2F2',
+            border: '1px solid #FF8A8A',
+            color: '#D93838',
             borderRadius: 'var(--radius-sm)',
             padding: '0.8rem 1rem',
             marginBottom: '1.5rem',
             fontWeight: '700',
-            fontSize: '0.95rem',
+            fontSize: '0.9rem',
             textAlign: 'center'
           }}>
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {isSignUp && (
             <div style={{ position: 'relative' }}>
-              <User size={20} style={{
+              <User size={18} style={{
                 position: 'absolute',
                 left: '1.2rem',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                color: 'var(--color-secondary)'
+                color: 'var(--color-primary)'
               }} />
               <input
                 type="text"
@@ -116,28 +134,38 @@ export default function AuthView() {
                 required
                 style={{
                   width: '100%',
-                  padding: '1rem 1.2rem 1rem 3.2rem',
-                  fontSize: '1.1rem',
+                  padding: '1.1rem 1.2rem 1.1rem 3.2rem',
+                  fontSize: '1rem',
                   fontWeight: '700',
-                  border: '3px solid #E0E0E0',
+                  border: '1px solid transparent',
+                  backgroundColor: '#F3F4F6',
                   borderRadius: 'var(--radius-md)',
                   outline: 'none',
-                  transition: 'border-color 0.3s',
-                  fontFamily: 'inherit'
+                  transition: 'all 0.25s',
+                  fontFamily: 'inherit',
+                  color: 'var(--color-secondary)'
                 }}
-                onFocus={(e) => e.target.style.borderColor = 'var(--color-secondary)'}
-                onBlur={(e) => e.target.style.borderColor = '#E0E0E0'}
+                onFocus={(e) => {
+                  e.target.style.backgroundColor = '#FFFFFF';
+                  e.target.style.borderColor = 'var(--color-primary)';
+                  e.target.style.boxShadow = '0 0 0 4px rgba(255, 122, 0, 0.1)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.backgroundColor = '#F3F4F6';
+                  e.target.style.borderColor = 'transparent';
+                  e.target.style.boxShadow = 'none';
+                }}
               />
             </div>
           )}
 
           <div style={{ position: 'relative' }}>
-            <Mail size={20} style={{
+            <Mail size={18} style={{
               position: 'absolute',
               left: '1.2rem',
               top: '50%',
               transform: 'translateY(-50%)',
-              color: 'var(--color-secondary)'
+              color: 'var(--color-primary)'
             }} />
             <input
               type="email"
@@ -147,27 +175,37 @@ export default function AuthView() {
               required
               style={{
                 width: '100%',
-                padding: '1rem 1.2rem 1rem 3.2rem',
-                fontSize: '1.1rem',
+                padding: '1.1rem 1.2rem 1.1rem 3.2rem',
+                fontSize: '1rem',
                 fontWeight: '700',
-                border: '3px solid #E0E0E0',
+                border: '1px solid transparent',
+                backgroundColor: '#F3F4F6',
                 borderRadius: 'var(--radius-md)',
                 outline: 'none',
-                transition: 'border-color 0.3s',
-                fontFamily: 'inherit'
+                transition: 'all 0.25s',
+                fontFamily: 'inherit',
+                color: 'var(--color-secondary)'
               }}
-              onFocus={(e) => e.target.style.borderColor = 'var(--color-secondary)'}
-              onBlur={(e) => e.target.style.borderColor = '#E0E0E0'}
+              onFocus={(e) => {
+                e.target.style.backgroundColor = '#FFFFFF';
+                e.target.style.borderColor = 'var(--color-primary)';
+                e.target.style.boxShadow = '0 0 0 4px rgba(255, 122, 0, 0.1)';
+              }}
+              onBlur={(e) => {
+                e.target.style.backgroundColor = '#F3F4F6';
+                e.target.style.borderColor = 'transparent';
+                e.target.style.boxShadow = 'none';
+              }}
             />
           </div>
 
           <div style={{ position: 'relative' }}>
-            <KeyRound size={20} style={{
+            <KeyRound size={18} style={{
               position: 'absolute',
               left: '1.2rem',
               top: '50%',
               transform: 'translateY(-50%)',
-              color: 'var(--color-secondary)'
+              color: 'var(--color-primary)'
             }} />
             <input
               type="password"
@@ -177,17 +215,27 @@ export default function AuthView() {
               required
               style={{
                 width: '100%',
-                padding: '1rem 1.2rem 1rem 3.2rem',
-                fontSize: '1.1rem',
+                padding: '1.1rem 1.2rem 1.1rem 3.2rem',
+                fontSize: '1rem',
                 fontWeight: '700',
-                border: '3px solid #E0E0E0',
+                border: '1px solid transparent',
+                backgroundColor: '#F3F4F6',
                 borderRadius: 'var(--radius-md)',
                 outline: 'none',
-                transition: 'border-color 0.3s',
-                fontFamily: 'inherit'
+                transition: 'all 0.25s',
+                fontFamily: 'inherit',
+                color: 'var(--color-secondary)'
               }}
-              onFocus={(e) => e.target.style.borderColor = 'var(--color-secondary)'}
-              onBlur={(e) => e.target.style.borderColor = '#E0E0E0'}
+              onFocus={(e) => {
+                e.target.style.backgroundColor = '#FFFFFF';
+                e.target.style.borderColor = 'var(--color-primary)';
+                e.target.style.boxShadow = '0 0 0 4px rgba(255, 122, 0, 0.1)';
+              }}
+              onBlur={(e) => {
+                e.target.style.backgroundColor = '#F3F4F6';
+                e.target.style.borderColor = 'transparent';
+                e.target.style.boxShadow = 'none';
+              }}
             />
           </div>
 
@@ -198,17 +246,18 @@ export default function AuthView() {
             style={{
               width: '100%',
               padding: '1.1rem',
-              fontSize: '1.3rem',
-              marginTop: '0.5rem',
+              fontSize: '1.15rem',
+              marginTop: '0.8rem',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              gap: '0.5rem'
+              gap: '0.5rem',
+              borderRadius: 'var(--radius-full)'
             }}
           >
             {loading ? 'Đang kết nối...' : (
               <>
-                {isSignUp ? 'Đăng Ký Ngay' : 'Đăng Nhập'} <Sparkles size={20} />
+                {isSignUp ? 'Đăng Ký Ngay' : 'Đăng Nhập'} <Sparkles size={18} />
               </>
             )}
           </button>
@@ -217,7 +266,7 @@ export default function AuthView() {
         <div style={{
           textAlign: 'center',
           marginTop: '2rem',
-          borderTop: '2px solid #F0F0F0',
+          borderTop: '1px solid #EEEEEE',
           paddingTop: '1.5rem'
         }}>
           <button
@@ -228,8 +277,8 @@ export default function AuthView() {
             style={{
               background: 'none',
               border: 'none',
-              color: 'var(--color-secondary)',
-              fontSize: '1.05rem',
+              color: 'var(--color-primary)',
+              fontSize: '0.95rem',
               fontWeight: '800',
               cursor: 'pointer',
               textDecoration: 'underline',

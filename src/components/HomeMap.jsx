@@ -3,33 +3,39 @@ import { lessonsData } from '../data/lessons';
 import { PiggyBank, ShoppingBag, Store, ArrowRight, Award } from 'lucide-react';
 
 const icons = {
-  PiggyBank: <PiggyBank size={32} color="var(--color-primary)" />,
-  ShoppingBag: <ShoppingBag size={32} color="var(--color-secondary)" />,
-  Store: <Store size={32} color="var(--color-accent)" />
+  PiggyBank: <PiggyBank size={24} color="#FF7A00" />,
+  ShoppingBag: <ShoppingBag size={24} color="#2EC4B6" />,
+  Store: <Store size={24} color="#0E1E38" />
 };
 
 export default function HomeMap() {
   const { navigateTo } = useGame();
 
   return (
-    <div className="glass-panel animate-slide" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>Bản đồ Bài học</h1>
+    <div className="glass-panel animate-slide" style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', backgroundColor: '#FFFFFF' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: '0.5rem', fontSize: '1.8rem', color: 'var(--color-secondary)' }}>Bản đồ Bài học</h1>
       
       {lessonsData.map((lesson, index) => (
         <div 
           key={lesson.id} 
           className="game-card"
           onClick={() => navigateTo('lesson', lesson.id)}
-          style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', animationDelay: `${index * 0.1}s` }}
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '1.2rem', 
+            animationDelay: `${index * 0.08}s`,
+            padding: '1.2rem'
+          }}
         >
-          <div style={{ background: 'var(--color-background)', padding: '1rem', borderRadius: 'var(--radius-full)' }}>
+          <div style={{ backgroundColor: '#F3F4F6', padding: '0.8rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             {icons[lesson.icon]}
           </div>
           <div style={{ flex: 1 }}>
-            <h3>Bài {lesson.id}: {lesson.title}</h3>
-            <p style={{ color: 'var(--color-text-light)', fontSize: '0.9rem' }}>{lesson.description}</p>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: '800' }}>Bài {lesson.id}: {lesson.title}</h3>
+            <p style={{ color: 'var(--color-text-light)', fontSize: '0.85rem', fontWeight: '600', marginTop: '0.15rem' }}>{lesson.description}</p>
           </div>
-          <ArrowRight size={24} color="var(--color-text-light)" />
+          <ArrowRight size={20} color="var(--color-text-light)" />
         </div>
       ))}
 
@@ -40,20 +46,21 @@ export default function HomeMap() {
         style={{ 
           display: 'flex', 
           alignItems: 'center', 
-          gap: '1.5rem',
-          border: '3px solid #FFD93B',
-          background: 'linear-gradient(135deg, #FFFDF0 0%, #FFFDF5 100%)',
-          boxShadow: '0 8px 25px rgba(255, 217, 59, 0.25)'
+          gap: '1.2rem',
+          border: '1px solid rgba(255, 122, 0, 0.25)',
+          background: 'linear-gradient(135deg, #FFF9F2 0%, #FFFDFB 100%)',
+          boxShadow: 'var(--shadow-card)',
+          padding: '1.2rem'
         }}
       >
-        <div style={{ background: '#FFF7D6', padding: '1rem', borderRadius: 'var(--radius-full)' }}>
-          <Award size={32} color="#FF9F43" />
+        <div style={{ backgroundColor: '#FFEBD6', padding: '0.8rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Award size={24} color="#FF7A00" />
         </div>
         <div style={{ flex: 1 }}>
-          <h3 style={{ color: '#D47E00' }}>🏆 Thử thách 30 Câu hỏi Tài chính</h3>
-          <p style={{ color: 'var(--color-text-light)', fontSize: '0.9rem' }}>Trả lời tất cả câu hỏi trắc nghiệm để giành Huy hiệu Hiệp sĩ Vàng!</p>
+          <h3 style={{ color: '#E06C00', fontSize: '1.1rem', fontWeight: '800' }}>🏆 Thử thách 30 Câu hỏi</h3>
+          <p style={{ color: 'var(--color-text-light)', fontSize: '0.85rem', fontWeight: '600', marginTop: '0.15rem' }}>Đồng hành cùng Cáo Cam chinh phục danh hiệu Hiệp sĩ Vàng!</p>
         </div>
-        <ArrowRight size={24} color="#FF9F43" />
+        <ArrowRight size={20} color="#FF7A00" />
       </div>
     </div>
   );

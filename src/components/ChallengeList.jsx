@@ -72,45 +72,44 @@ export default function ChallengeList() {
       </div>
 
       {/* Progress Card */}
-      <div className="glass-panel animate-pop" style={{ marginBottom: '2rem', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
+      <div className="glass-panel animate-pop" style={{ marginBottom: '1.5rem', padding: '1.2rem', backgroundColor: '#FFFFFF', border: '1px solid rgba(14, 30, 56, 0.08)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem' }}>
           <div>
-            <div style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--color-text-light)' }}>TIẾN TRÌNH KHÓA HỌC</div>
-            <div style={{ fontSize: '1.8rem', fontWeight: '900', color: 'var(--color-primary)' }}>
-              {completedCount} / {totalQuestions} Câu hỏi
+            <div style={{ fontSize: '0.85rem', fontWeight: '800', color: 'var(--color-text-light)' }}>TIẾN TRÌNH THỬ THÁCH</div>
+            <div style={{ fontSize: '1.6rem', fontWeight: '900', color: 'var(--color-secondary)' }}>
+              {completedCount} / {totalQuestions} câu đã làm
             </div>
           </div>
           {isCourseCompleted ? (
-            <div className="animate-float" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="animate-float" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <div style={{
-                background: 'linear-gradient(135deg, #FFD93B 0%, #FF9F43 100%)',
-                width: '60px',
-                height: '60px',
+                background: 'linear-gradient(135deg, #FF9F43 0%, #FF7A00 100%)',
+                width: '40px',
+                height: '40px',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 8px 20px rgba(255, 159, 67, 0.4)',
-                border: '3px solid white'
+                boxShadow: '0 4px 12px rgba(255, 122, 0, 0.3)',
               }}>
-                <Award size={36} color="white" />
+                <Award size={20} color="white" />
               </div>
-              <span style={{ fontSize: '0.75rem', fontWeight: '900', color: '#FF9F43', marginTop: '0.3rem' }}>HIỆP SĨ VÀNG</span>
+              <span style={{ fontSize: '0.85rem', fontWeight: '900', color: '#FF7A00' }}>HIỆP SĨ VÀNG</span>
             </div>
           ) : (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-light)', fontWeight: '700' }}>
-              <Lock size={20} /> Hoàn thành để mở khóa Huy hiệu
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--color-text-light)', fontWeight: '800', fontSize: '0.85rem' }}>
+              <Lock size={16} /> Nhận Huy hiệu vàng
             </div>
           )}
         </div>
 
         {/* Progress Bar Container */}
-        <div style={{ width: '100%', height: '20px', backgroundColor: '#EBEBEB', borderRadius: '10px', overflow: 'hidden' }}>
+        <div style={{ width: '100%', height: '12px', backgroundColor: '#F3F4F6', borderRadius: '6px', overflow: 'hidden' }}>
           <div style={{
             width: `${progressPercent}%`,
             height: '100%',
-            background: 'linear-gradient(90deg, var(--color-secondary) 0%, var(--color-success) 100%)',
-            borderRadius: '10px',
+            background: 'linear-gradient(90deg, #FF9F43 0%, #FF7A00 100%)',
+            borderRadius: '6px',
             transition: 'width 0.5s ease-out'
           }} />
         </div>
@@ -119,43 +118,65 @@ export default function ChallengeList() {
       {/* Completion Banner */}
       {isCourseCompleted && (
         <div className="glass-panel animate-pop" style={{
-          background: 'linear-gradient(135deg, #FFE66D 0%, #FFF5D1 100%)',
-          border: '3px solid #FFD93B',
+          border: '1px solid rgba(255, 122, 0, 0.3)',
+          background: 'linear-gradient(135deg, #FFF9F2 0%, #FFFDFB 100%)',
           textAlign: 'center',
           padding: '2.5rem 1.5rem',
           marginBottom: '2rem'
         }}>
-          <div className="animate-float" style={{ display: 'inline-block', marginBottom: '1rem' }}>
-            👑👑👑
+          {/* Mascot in congrats banner */}
+          <div className="animate-float" style={{
+            width: '120px',
+            height: '120px',
+            margin: '0 auto 1rem',
+            borderRadius: '50%',
+            overflow: 'hidden',
+            backgroundColor: '#FFF7ED',
+            border: '4px solid #FFF',
+            boxShadow: 'var(--shadow-soft)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <img 
+              src="/mascot.png" 
+              alt="Cáo Cam Mascot" 
+              style={{
+                width: '110%',
+                height: '110%',
+                objectFit: 'cover',
+                marginTop: '5%'
+              }}
+            />
           </div>
-          <h1 style={{ color: '#E58A00', fontSize: '2.2rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-            <Sparkles color="#FF9F43" /> CHÚC MỪNG CON! <Sparkles color="#FF9F43" />
+          <h1 style={{ color: '#E06C00', fontSize: '1.8rem', marginBottom: '0.5rem', fontWeight: '900' }}>
+            <Sparkles size={20} style={{ display: 'inline', marginRight: '0.5rem' }} /> CHÚC MỪNG CON!
           </h1>
-          <p style={{ fontSize: '1.2rem', fontWeight: '800', color: 'var(--color-text-main)', marginBottom: '1.5rem' }}>
+          <p style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--color-text-main)', marginBottom: '1.5rem' }}>
             Con đã xuất sắc trả lời đúng tất cả 30 câu hỏi thử thách tài chính và chính thức mở khóa danh hiệu:
           </p>
           <div style={{
             display: 'inline-flex',
             flexDirection: 'column',
             alignItems: 'center',
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
-            padding: '1.5rem 3rem',
-            borderRadius: 'var(--radius-lg)',
-            boxShadow: 'var(--shadow-card)',
-            border: '3px dashed #FFD93B'
+            backgroundColor: '#FFFFFF',
+            padding: '1.2rem 2.5rem',
+            borderRadius: 'var(--radius-md)',
+            boxShadow: 'var(--shadow-soft)',
+            border: '2px dashed #FF9F43'
           }}>
-            <Award size={80} color="#FF9F43" className="animate-float" />
-            <h3 style={{ color: '#D47E00', marginTop: '0.5rem', fontSize: '1.5rem' }}>Hiệp Sĩ Tài Chính Nhí</h3>
+            <Award size={40} color="#FF7A00" className="animate-float" />
+            <h3 style={{ color: '#D47E00', marginTop: '0.3rem', fontSize: '1.2rem', fontWeight: '900' }}>Hiệp Sĩ Tài Chính Nhí</h3>
           </div>
         </div>
       )}
 
       {/* 30 Questions Grid */}
-      <h3 style={{ marginBottom: '1rem', color: 'var(--color-text-main)' }}>Bản đồ thử thách</h3>
+      <h3 style={{ marginBottom: '1rem', color: 'var(--color-secondary)', fontSize: '1.2rem', fontWeight: '800' }}>Bản đồ thử thách</h3>
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(5, 1fr)',
-        gap: '0.8rem'
+        gap: '0.6rem'
       }}>
         {challengeQuestions.map((q) => {
           const isDone = answeredQuestions.includes(q.id);
@@ -166,9 +187,9 @@ export default function ChallengeList() {
               style={{
                 aspectRatio: '1',
                 borderRadius: 'var(--radius-md)',
-                backgroundColor: isDone ? 'var(--color-success)' : 'white',
-                color: isDone ? 'white' : 'var(--color-secondary)',
-                border: isDone ? 'none' : '3px solid var(--color-secondary)',
+                backgroundColor: isDone ? 'var(--color-primary)' : '#FFFFFF',
+                color: isDone ? '#FFFFFF' : 'var(--color-secondary)',
+                border: isDone ? 'none' : '1px solid rgba(14, 30, 56, 0.08)',
                 boxShadow: 'var(--shadow-soft)',
                 display: 'flex',
                 flexDirection: 'column',
@@ -176,24 +197,26 @@ export default function ChallengeList() {
                 alignItems: 'center',
                 cursor: isDone ? 'default' : 'pointer',
                 fontWeight: '900',
-                fontSize: '1.3rem',
-                transition: 'all 0.2s',
+                fontSize: '1.2rem',
+                transition: 'all 0.25s',
                 transform: 'scale(1)',
               }}
               onMouseEnter={(e) => {
                 if (!isDone) {
                   e.currentTarget.style.transform = 'scale(1.08)';
-                  e.currentTarget.style.backgroundColor = '#F0FAF9';
+                  e.currentTarget.style.borderColor = 'var(--color-primary)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(255, 122, 0, 0.08)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isDone) {
                   e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.backgroundColor = 'white';
+                  e.currentTarget.style.borderColor = 'rgba(14, 30, 56, 0.08)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-soft)';
                 }
               }}
             >
-              {isDone ? <Check size={28} strokeWidth={3} /> : q.id}
+              {isDone ? <Check size={20} strokeWidth={4} /> : q.id}
             </div>
           );
         })}
