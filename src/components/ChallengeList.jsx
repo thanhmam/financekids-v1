@@ -249,13 +249,26 @@ export default function ChallengeList() {
 
             {/* Question Illustration */}
             <div className="animate-float" style={{
-              fontSize: '4.5rem',
               textAlign: 'center',
-              marginBottom: '1rem',
-              lineHeight: '1',
-              letterSpacing: '5px'
+              marginBottom: '1.5rem',
+              lineHeight: '1'
             }}>
-              {selectedQuestion.emoji || "❓"}
+              {selectedQuestion.image ? (
+                <img 
+                  src={selectedQuestion.image} 
+                  alt="Illustration" 
+                  style={{
+                    width: '100%',
+                    maxHeight: '180px',
+                    objectFit: 'cover',
+                    borderRadius: 'var(--radius-md)',
+                    border: '2px solid #F0F0F0',
+                    boxShadow: 'var(--shadow-soft)'
+                  }} 
+                />
+              ) : (
+                <span style={{ fontSize: '4.5rem' }}>❓</span>
+              )}
             </div>
 
             <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '1.4rem', color: 'var(--color-text-main)' }}>
@@ -319,15 +332,6 @@ export default function ChallengeList() {
                 textAlign: 'center',
                 animation: 'popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
               }}>
-                <div style={{
-                  fontSize: '5rem',
-                  marginBottom: '1rem',
-                  display: 'flex',
-                  gap: '0.8rem',
-                  justifyContent: 'center'
-                }} className="animate-float">
-                  🎉 ⭐ 🪙 🎈
-                </div>
                 <h1 style={{ color: 'var(--color-success)', fontSize: '2.2rem', marginBottom: '0.5rem' }}>ĐÚNG RỒI!</h1>
                 <p style={{ fontSize: '1.1rem', fontWeight: '900', color: 'var(--color-text-main)', marginBottom: '2rem' }}>
                   {feedback.message}
