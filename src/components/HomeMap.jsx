@@ -1,6 +1,7 @@
 import { useGame } from '../context/GameContext';
 import { lessonsData } from '../data/lessons';
 import { PiggyBank, ShoppingBag, Store, ArrowRight, Award } from 'lucide-react';
+import AnimatedMascot from './AnimatedMascot';
 
 const icons = {
   PiggyBank: <PiggyBank size={24} color="#FF7A00" />,
@@ -14,6 +15,10 @@ export default function HomeMap() {
   return (
     <div className="glass-panel animate-slide" style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', backgroundColor: '#FFFFFF' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '0.5rem', fontSize: '1.8rem', color: 'var(--color-secondary)' }}>Bản đồ Bài học</h1>
+      
+      <div style={{ display: 'flex', justifyContent: 'center', margin: '0.2rem 0' }}>
+        <AnimatedMascot animation="wave" size={120} />
+      </div>
       
       {lessonsData.map((lesson, index) => (
         <div 

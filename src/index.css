@@ -184,9 +184,26 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
   100% { transform: translateY(0px); }
 }
 
+@keyframes mascotWave {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes mascotJoy {
+  0% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-18px) scaleY(1.1) scaleX(0.9) rotate(5deg); }
+  50% { transform: translateY(0) scaleY(0.85) scaleX(1.15) rotate(-5deg); }
+  70% { transform: translateY(-8px) scaleY(1.05) scaleX(0.95) rotate(3deg); }
+  100% { transform: translateY(0) scale(1) rotate(0deg); }
+}
+
 .animate-pop { animation: popIn 0.4s var(--transition-bounce) forwards; }
 .animate-slide { animation: slideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .animate-float { animation: float 3.5s ease-in-out infinite; }
+.animate-wave { animation: mascotWave 1.8s ease-in-out infinite; transform-origin: bottom center; }
+.animate-joy { animation: mascotJoy 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite; }
 
 /* Layout Utilities */
 .app-container {

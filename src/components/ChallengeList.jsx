@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useGame } from '../context/GameContext';
 import { challengeQuestions } from '../data/challengeQuestions';
 import { Check, Lock, Award, Sparkles, X, Trophy, Coins } from 'lucide-react';
+import AnimatedMascot from './AnimatedMascot';
 
 export default function ChallengeList() {
   const { answeredQuestions, answerChallengeQuestion, navigateTo } = useGame();
@@ -125,29 +126,8 @@ export default function ChallengeList() {
           marginBottom: '2rem'
         }}>
           {/* Mascot in congrats banner */}
-          <div className="animate-float" style={{
-            width: '120px',
-            height: '120px',
-            margin: '0 auto 1rem',
-            borderRadius: '50%',
-            overflow: 'hidden',
-            backgroundColor: '#FFF7ED',
-            border: '4px solid #FFF',
-            boxShadow: 'var(--shadow-soft)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <img 
-              src="/mascot.png" 
-              alt="Cáo Cam Mascot" 
-              style={{
-                width: '110%',
-                height: '110%',
-                objectFit: 'cover',
-                marginTop: '5%'
-              }}
-            />
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+            <AnimatedMascot animation="joy" size={120} />
           </div>
           <h1 style={{ color: '#E06C00', fontSize: '1.8rem', marginBottom: '0.5rem', fontWeight: '900' }}>
             <Sparkles size={20} style={{ display: 'inline', marginRight: '0.5rem' }} /> CHÚC MỪNG CON!
@@ -355,6 +335,9 @@ export default function ChallengeList() {
                 textAlign: 'center',
                 animation: 'popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
               }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.8rem' }}>
+                  <AnimatedMascot animation="joy" size={110} />
+                </div>
                 <h1 style={{ color: 'var(--color-success)', fontSize: '2.2rem', marginBottom: '0.5rem' }}>ĐÚNG RỒI!</h1>
                 <p style={{ fontSize: '1.1rem', fontWeight: '900', color: 'var(--color-text-main)', marginBottom: '2rem' }}>
                   {feedback.message}

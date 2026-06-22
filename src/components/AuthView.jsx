@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useGame } from '../context/GameContext';
 import { KeyRound, Mail, User, Sparkles } from 'lucide-react';
+import AnimatedMascot from './AnimatedMascot';
 
 export default function AuthView() {
   const { signIn, signUp } = useGame();
@@ -63,29 +64,8 @@ export default function AuthView() {
       }}>
         {/* Fox Mascot Illustration */}
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          <div className="animate-float" style={{
-            width: '140px',
-            height: '140px',
-            margin: '0 auto 1rem',
-            borderRadius: '50%',
-            overflow: 'hidden',
-            backgroundColor: '#FFF7ED',
-            border: '4px solid #FFF',
-            boxShadow: 'var(--shadow-soft)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <img 
-              src="/mascot.png" 
-              alt="Cáo Cam Mascot" 
-              style={{
-                width: '110%',
-                height: '110%',
-                objectFit: 'cover',
-                marginTop: '5%'
-              }}
-            />
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+            <AnimatedMascot animation="wave" size={140} />
           </div>
           <h1 style={{ 
             fontSize: '2.1rem', 
